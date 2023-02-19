@@ -1,0 +1,26 @@
+{
+  "name": "ethicspay",
+  "version": "7.0.1",
+  "description": "UPI PAYMENT APP",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js 8081"
+  },
+  "repository": {
+    "type": "website",
+    "url": "https://ethicscomputer.tech"
+  },
+  "keywords": [
+    "later"
+  ],
+  "author": "Vinay Grover",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://ethicscomputer.tech/bugs"
+  },
+  "homepage": "https://ethicscomputer.tech",
+  "dependencies": {
+    "express": "^4.18.1",
+    "qrious": "^4.0.2"
+  }
+}

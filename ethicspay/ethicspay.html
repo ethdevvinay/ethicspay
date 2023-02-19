@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- Primary Meta Tags -->
+	<title>EthicsPay | UPI Link Genreator</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.svg">
+	<meta name="title" content="EthicsPay | UPI Link Genreator">
+	<meta name="description" content="EthicsPay | UPI Link Genreator ">
+	<link rel="fluid-icon" href="/img/EthicsPay.png"
+		title="EthicsComputer | ethicspay" />
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://ethicscomputer.tech">
+	<meta property="og:title" content="EthicsPay | UPI Link Genreator">
+	<meta property="og:description"
+		content="EthicsPay | UPI Link Genreator ">
+	<meta property="og:image" content="/img/EthicsPay.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/main.css">
+	<!--Coded by Vinay Grover @EthicsComputer -->
+	</head>
+
+<body>
+	<center>
+		<div class="card">
+			<div class="card-content">
+				<a href="ethicspay.html?new"><img src="img/logo.png" width="100%" height="100%"></a>
+				<br>
+				<h4 style="color: #ff6a00;">Create UPI Payment Request Link </h4>
+				<img src="img/upi.png" height="100">
+				<br>
+				<div id="ethicspaydiv" style="display:none;">
+					<textarea class='text-box' rows="4" cols="30" id='ethicspeurl'></textarea>
+					<br><br>
+					<a onclick='copyUpiUrl()' class='btn' id='btn-copy'>Copy Link</a>
+					<a id='whatsapp' class="btn">Share Link</a>
+				</div>
+				<form id="ethicspayform">
+					<label style="color: #7e07c8;">Enter Name:</label><br>
+					<input type="name" name="pn" class="text-box" placeholder="Enter your name (Optional):"><br>
+					<label style="color: #0d7b89;">Enter Upi Id:</label><br>
+					<input type="email" name="pa" class="text-box" placeholder="Enter UPI Id" required><br>
+					<label style="color: #e42c03;">Enter Amount (Optional):</label><br>
+					<input type="number" name="am" class="text-box" placeholder="INR"><br>
+					<button type="submit" class="btn">Submit</button>
+				</form>
+				<br>
+				<p style="color: #450082">
+					<b>Developed BY : </b>
+					<a href="https://ethicscomp.tech" style="color: #bf01ea;">Vinay Grover</a>
+				</p>
+			</div>
+		</div>
+	</center>
+
+</body>
+<script>
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const pn = urlParams.get('pn');
+	const pa = urlParams.get('pa');
+	const am = urlParams.get('am');
+	if (pa !== null) {
+		// check prod or dev
+		var ethicspeurl = window.location.hostname;
+		if (ethicspeurl.includes("localhost")) {
+			console.log("dev");
+			ethicspeurl = `${window.location.protocol}//${window.location.hostname}:${window.location.port}/index.html`;
+		} else {
+			ethicspeurl = `${window.location.protocol}//${window.location.hostname}/ethicspay`;
+		}
+
+		ethicspeurl += `?pa=${pa}&pn=${pn}&cu=INR`;
+		if (!isNaN(am) && am !== null && am !== "") {
+			ethicspeurl += `&am=${am}`;
+		}
+
+		document.getElementById("ethicspeurl").innerHTML = ethicspeurl;
+		document.getElementById("whatsapp").href = "https://wa.me/?text=Hi%2C%20You%20can%20pay%20me%20by%20this%20Upi%20Payment%20Link%0A%20" + encodeURIComponent(ethicspeurl);
+		document.getElementById("ethicspaydiv").style.display = "block";
+		document.getElementById("ethicspayform").style.display = "none";
+	}
+	function copyUpiUrl() {
+		var copyethicspay = document.getElementById("ethicspeurl");
+		copyethicspay.select();
+		copyethicspay.setSelectionRange(0, 99999)
+		document.execCommand("copy");
+		document.getElementById("btn-copy").innerHTML = "Copied";
+	}
+</script>
+
+</html>
